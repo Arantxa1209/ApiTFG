@@ -28,3 +28,18 @@ Route::post('users', [App\Http\Controllers\UsersController::class, 'store']);
 Route::put('users/{id}', [App\Http\Controllers\UsersController::class, 'update']);
 
 Route::delete('users/{id}', [App\Http\Controllers\UsersController::class, 'delete']);
+
+//AUTENTICACIÓN (logIn y logOut)
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
+    Route::post('signup', [App\Http\Controllers\AuthController::class,'signUp']);
+
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout']);
+        Route::get('user', [App\Http\Controllers\AuthController::class,'user']);
+    });
+});
