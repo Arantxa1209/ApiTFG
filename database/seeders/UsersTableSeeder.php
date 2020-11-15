@@ -31,10 +31,10 @@ class UsersTableSeeder extends Seeder
         //Genero usuarios 
         for($i = 0; $i < 10; $i++){
         	User::create([
-        	'name' => $faker->name,
-        	'email' => $faker->email,
-        	'password' => $faker->password,
-        ]);
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => $faker->password,
+            ]);
         }
 
     }

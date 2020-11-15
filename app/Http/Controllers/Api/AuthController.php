@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -32,7 +35,6 @@ class AuthController extends Controller
     /**
      * Inicio de sesión y creación de token
      */
-    /*
     public function login(Request $request)
     {
         $request->validate([
@@ -62,9 +64,11 @@ class AuthController extends Controller
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
         ]);
     }
-    */
+
+    /*
     public function login(Request $request)
 {
+    
     if (Auth::attempt($request->only('email', 'password'))) {
         $user = Auth::user();
         $token =  $user->createToken('MyApp')->accessToken;
@@ -76,7 +80,7 @@ class AuthController extends Controller
         return response()->json(['error' => 'Unauthorised'], 401);
     }
 }
-
+*/
 
     /**
      * Cierre de sesión (anular el token)
