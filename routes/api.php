@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Demographics;
+use App\Models\InitialEvaluatiton;
+use App\Models\Orientation;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,3 +46,14 @@ Route::group([
         Route::get('user', [App\Http\Controllers\Api\AuthController::class,'user']);
     });
 });
+
+//Test inicial de evaluación
+Route::post('addQuestions', [App\Http\Controllers\Api\InitialEvaluationController::class, 'addQuestions']);
+
+
+//Demographics
+Route::post('addAnswers', [App\Http\Controllers\Api\DemographicsController::class, 'addAnswers'])->middleware('auth:api');
+
+
+//Orientation
+Route::post('addAnswersOrientation', [App\Http\Controllers\Api\OrientationController::class, 'addAnswersOrientation']);
