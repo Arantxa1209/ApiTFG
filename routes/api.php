@@ -57,3 +57,11 @@ Route::post('addAnswers', [App\Http\Controllers\Api\DemographicsController::clas
 
 //Orientation
 Route::post('addAnswersOrientation', [App\Http\Controllers\Api\OrientationController::class, 'addAnswersOrientation']);
+
+
+//Location Test
+Route::post('addAnswersLocationTest', [App\Http\Controllers\Api\LocationController::class, 'addAnswersLocationTest'])->middleware('auth:api');
+
+
+//Denomination Test
+Route::post('addAnswersDenominationTest', [App\Http\Controllers\Api\DenominationController::class, 'addAnswersDenominationTest'])->middleware('auth:api');
