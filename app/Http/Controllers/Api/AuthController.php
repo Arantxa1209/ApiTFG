@@ -72,7 +72,7 @@ class AuthController extends Controller
         */
 
         $request->validate([
-            'email' => 'required|string',
+            'email' => 'required|email|string',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
