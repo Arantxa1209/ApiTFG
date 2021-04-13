@@ -17,6 +17,9 @@ class Demographics extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'demographics';
+
     protected $fillable = [
         'user_id',
         'birthYear',

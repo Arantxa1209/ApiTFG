@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Denomination;
 use App\Models\Demographics; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,10 +37,21 @@ class DenoninationController extends Controller
             'word_17' => 'required|boolean',
             'word_18' => 'required|boolean',
             'word_19' => 'required|boolean',
-            'word_20' => 'required|boolean',
-            'fails' => 'required|string',
-            'points' => 'required|integer'
+            'word_20' => 'required|boolean'
+            //'fails' => 'required|integer',
+            //'points' => 'required|integer'
         ]);
+
+        $fails = 0;
+        $points = 0;
+
+        foreach($request->request as $value){
+            $lev = levenshtein($value, $word);
+            if($lev === 2)
+                $points++;
+            else
+                $fails++;
+        }
 
         Denomination::create([
             'user_id' => Auth::user()->id, //pilla el usuario de la sesión
@@ -63,8 +75,8 @@ class DenoninationController extends Controller
             'word_18' => $request->word_18,
             'word_19' => $request->word_19,
             'word_20' => $request->word_20, 
-            'fails' => $request->fails,
-            'points' => $request->points
+            'fails' => $fails,
+            'points' => $points
         ]);
 
         return response()->json([

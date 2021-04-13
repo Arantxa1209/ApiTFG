@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Location;
 use App\Models\Demographics; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class LocationController extends Controller
      */
     public function addAnswersLocationTest(Request $request)
     {
+        //dd($request);
         $request->validate([
             'slide_1' => 'required|boolean',
             'slide_2' => 'required|boolean',
@@ -26,11 +28,21 @@ class LocationController extends Controller
             'slide_7' => 'required|boolean',
             'slide_8' => 'required|boolean',
             'slide_9' => 'required|boolean',
-            'slide_10' => 'required|boolean',
-            'success' => 'required|integer',
-            'fails' => 'required|string',
-            'points' => 'required|integer'
+            'slide_10' => 'required|boolean'
+            //'success' => 'required|integer',
+            //'fails' => 'required|string',
+            //'points' => 'required|integer'
         ]);
+        
+        $fails = 0;
+        $success = 0;
+
+        foreach($request->request as $value){
+            if($value === true)
+                $success++;
+            else
+                $fails++;
+        }
 
         Location::create([
             'user_id' => Auth::user()->id, //pilla el usuario de la sesión
@@ -44,9 +56,9 @@ class LocationController extends Controller
             'slide_8' => $request->slide_8,
             'slide_9' => $request->slide_9,
             'slide_10' => $request->slide_10,            
-            'success' => $request->success,
-            'fails' => $request->fails,
-            'points' => $request->points
+            'success' => $success,
+            'fails' => $fails,
+            'points' => $success
         ]);
 
         return response()->json([
