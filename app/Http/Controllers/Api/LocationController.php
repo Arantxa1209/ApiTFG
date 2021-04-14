@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Log;
 use App\Models\Location;
 use App\Models\Demographics; 
 use Carbon\Carbon;
@@ -18,6 +19,7 @@ class LocationController extends Controller
     public function addAnswersLocationTest(Request $request)
     {
         //dd($request);
+        Log::error($request->slide_1);
         $request->validate([
             'slide_1' => 'required|boolean',
             'slide_2' => 'required|boolean',

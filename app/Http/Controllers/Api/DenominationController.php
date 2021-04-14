@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Log;
 use App\Models\Denomination;
 use App\Models\Demographics; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class DenoninationController extends Controller
+
+class DenominationController extends Controller
 {
     /**
      * 
@@ -18,39 +20,47 @@ class DenoninationController extends Controller
     public function addAnswersDenominationTest(Request $request)
     {
         $request->validate([
-            'word_1' => 'required|boolean',
-            'word_2' => 'required|boolean',
-            'word_3' => 'required|boolean',
-            'word_4' => 'required|boolean',
-            'word_5' => 'required|boolean',
-            'word_6' => 'required|boolean',
-            'word_7' => 'required|boolean',
-            'word_8' => 'required|boolean',
-            'word_9' => 'required|boolean',
-            'word_10' => 'required|boolean',
-            'word_11' => 'required|boolean',
-            'word_12' => 'required|boolean',
-            'word_13' => 'required|boolean',
-            'word_14' => 'required|boolean',
-            'word_15' => 'required|boolean',
-            'word_16' => 'required|boolean',
-            'word_17' => 'required|boolean',
-            'word_18' => 'required|boolean',
-            'word_19' => 'required|boolean',
-            'word_20' => 'required|boolean'
+            'word_1' => 'string|nullable',
+            'word_2' => 'string|nullable',
+            'word_3' => 'string|nullable',
+            'word_4' => 'string|nullable',
+            'word_5' => 'string|nullable',
+            'word_6' => 'string|nullable',
+            'word_7' => 'string|nullable',
+            'word_8' => 'string|nullable',
+            'word_9' => 'string|nullable',
+            'word_10' => 'string|nullable',
+            'word_11' => 'string|nullable',
+            'word_12' => 'string|nullable',
+            'word_13' => 'string|nullable',
+            'word_14' => 'string|nullable',
+            'word_15' => 'string|nullable',
+            'word_16' => 'string|nullable',
+            'word_17' => 'string|nullable',
+            'word_18' => 'string|nullable',
+            'word_19' => 'string|nullable',
+            'word_20' => 'string|nullable'
             //'fails' => 'required|integer',
             //'points' => 'required|integer'
         ]);
 
         $fails = 0;
         $points = 0;
+        $i = 0;
+        $words = array('HUEVO', 'JAMÓN', 'KIWI', 'TOMATE', 'UVAS', 'PLÁTANO', 'SANDÍA', 'MANTEQUILLA', 'BROCOLI', 'ACEITE', 'ZANAHORIA', 'CHOCOLATE', 'GUISANTE', 'FRESA', 'ZUMO', 'MANZANA', 'CEREALES', 'QUESO', 'PERA', 'MIEL');
+        $distances = array("2", "2", "1", "2", "1", "2", "2", "3", "2", "2", "3", "3", "3", "2", "1", "2", "2", "2", "1", "1");
 
         foreach($request->request as $value){
-            $lev = levenshtein($value, $word);
-            if($lev === 2)
+            $lev = levenshtein($value, $words[$i]);
+            Log::info($lev);
+            Log::info($value);
+            Log::info($words[$i]);
+
+            if($lev <= $distances[$i])
                 $points++;
             else
                 $fails++;
+            $i++;
         }
 
         Denomination::create([
