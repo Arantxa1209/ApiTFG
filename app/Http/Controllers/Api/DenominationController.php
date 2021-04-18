@@ -52,9 +52,9 @@ class DenominationController extends Controller
 
         foreach($request->request as $value){
             $lev = levenshtein($value, $words[$i]);
-            Log::info($lev);
-            Log::info($value);
-            Log::info($words[$i]);
+            //Log::info($lev);
+            //Log::info($value);
+            //Log::info($words[$i]);
 
             if($lev <= $distances[$i])
                 $points++;
