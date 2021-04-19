@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Demographics;
 use App\Models\InitialEvaluatiton;
 use App\Models\Orientation;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::post('/password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
 //CRUD para usuarios
 Route::get('users', [App\Http\Controllers\Api\UsersController::class, 'index']);
 
