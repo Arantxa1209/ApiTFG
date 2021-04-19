@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\PasswordResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -26,6 +27,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
+
+
+Route::group([    
+    'namespace' => 'Auth',    
+    'middleware' => 'api',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', [PasswordResetController::class, 'create']);
+    Route::get('find/{token}', [PasswordResetController::class,'find']);
+    Route::post('reset', [PasswordResetController::class,'reset']);
+});
+
+
 //CRUD para usuarios
 Route::get('users', [App\Http\Controllers\Api\UsersController::class, 'index']);
 
