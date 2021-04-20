@@ -42,6 +42,7 @@ class PasswordResetRequest extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Recuperar contraseña')
             ->greeting('Hola')
+            ->line('Este enlace para restablecer la contraseña expirará en 60 minutos.')
             ->line('Ha recibido este correo electrónico porque hemos recibido una solicitud de recuperación de contraseña para su cuenta.')
             ->action('Cambiar Contraseña', url($url))
             ->line('Si no ha solicitado el restablecimiento de su contraseña, no es necesario realizar ninguna otra acción.')
