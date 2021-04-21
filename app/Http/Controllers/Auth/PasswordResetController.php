@@ -56,13 +56,9 @@ class PasswordResetController extends Controller
      * @return [string] message
      * @return [json] passwordReset object
      */
-    public function find(Request $request)
+    public function find( $token)
     {
-        $request->validate([
-            'token' => 'required|string',
-            'email' => 'required|string|email',
-        ]);
-        $passwordReset = PasswordReset::where('token', $request->token)->first();
+        $passwordReset = PasswordReset::where('token', $token)->first();
         if (!$passwordReset)
             return response()->json([
                 'message' => 'Link invalido.'

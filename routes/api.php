@@ -35,7 +35,7 @@ Route::group([
     'prefix' => 'password'
 ], function () {    
     Route::post('create', [PasswordResetController::class, 'create']);
-    Route::get('find/token', [PasswordResetController::class,'find']);
+    Route::get('find/{token}', [PasswordResetController::class,'find']);
     Route::post('reset', [PasswordResetController::class,'reset']);
 });
 
