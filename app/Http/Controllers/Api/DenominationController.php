@@ -47,14 +47,16 @@ class DenominationController extends Controller
         $fails = 0;
         $points = 0;
         $i = 0;
-        $words = array('HUEVO', 'JAMÓN', 'KIWI', 'TOMATE', 'UVAS', 'PLÁTANO', 'SANDÍA', 'MANTEQUILLA', 'BROCOLI', 'ACEITE', 'ZANAHORIA', 'CHOCOLATE', 'GUISANTE', 'FRESA', 'ZUMO', 'MANZANA', 'CEREALES', 'QUESO', 'PERA', 'MIEL');
-        $distances = array("2", "2", "1", "2", "1", "2", "2", "3", "2", "2", "3", "3", "3", "2", "1", "2", "2", "2", "1", "1");
+        $words = array('HUEVO', 'CHOCOLATE', 'FRESA', 'ZUMO', 'MANZANA', 'CERELAES', 'QUESO', 'PERA', 'MIEL', 'JAMON', 'KIWI', 'TOMATE', 
+        'UVAS', 'PLATANO', 'SANDIA', 'MANTEQUILLA', 'BROCOLI', 'ACEITE', 'ZANAHORIA', 'GUISANTES');
+        $distances = array("2", "3", "2", "1", "2", "2", "2", "1", "1", "2", "1", "2", "1", "2", "2", "3", "2", "2", "3", "3");
 
         foreach($request->request as $value){
             $lev = levenshtein($value, $words[$i]);
-            //Log::info($lev);
-            //Log::info($value);
-            //Log::info($words[$i]);
+            Log::info($lev);
+            Log::info($value);
+            Log::info($words[$i]);
+            Log::info($distances[$i]);
 
             if($lev <= $distances[$i])
                 $points++;
