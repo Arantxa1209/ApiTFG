@@ -84,3 +84,15 @@ Route::post('addAnswersLocationTest', [App\Http\Controllers\Api\LocationControll
 
 //Denomination Test
 Route::post('addAnswersDenominationTest', [App\Http\Controllers\Api\DenominationController::class, 'addAnswersDenominationTest'])->middleware('auth:api');
+
+
+//Alimentation Table
+Route::post('addAnswersAlimentationTable', [App\Http\Controllers\Api\AlimentationController::class, 'addAnswersAlimentationTable'])->middleware('auth:api');
+
+
+//Cleaninng Table
+Route::post('addAnswersCleanningTable', [App\Http\Controllers\Api\CleanningController::class, 'addAnswersCleanningTable'])->middleware('auth:api');
+
+
+//Cleaninng Table
+Route::post('addAnswersAseoTable', [App\Http\Controllers\Api\AseoController::class, 'addAnswersAseoTable'])->middleware('auth:api');
