@@ -52,7 +52,8 @@ class DenominationController extends Controller
         $distances = array("2", "3", "2", "1", "2", "2", "2", "1", "1", "2", "1", "2", "1", "2", "2", "3", "2", "2", "3", "3");
 
         foreach($request->request as $value){
-            $lev = levenshtein(strtoupper($value), $words[$i]);
+            $value = strtoupper($value);
+            $lev = levenshtein($value, $words[$i]);
             //Log::info($lev);
             //Log::info($value);
             //Log::info($words[$i]);

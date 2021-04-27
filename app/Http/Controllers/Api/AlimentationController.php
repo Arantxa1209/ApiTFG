@@ -29,6 +29,42 @@ class AlimentationController extends Controller
         $words = array('FIDEOS', 'AZUCAR', 'LEVADURA');
         $distances = array("2", "2", "2");
         
+
+        foreach($request->request as $value){
+            $aux = 0;
+            for($i = 0; $i < 9; $i++){
+                $value = strtoupper($value);
+                similar_text($value, $words[$i], $percent);
+                if($i == 0){
+                    $aux = $percent;
+                }                                    
+                else if($aux <= $percent){
+                    $aux = $percent;
+                }         
+                //Log::info('PALABRA: ');
+                //Log::info($value);
+                //Log::info('WORD: ');
+                //Log::info($words[$i]);
+               
+            }
+            //Log::info('PERCENT: ');
+            //Log::info($percent);
+
+            if($aux >= 75.0){
+                $points++;
+            }
+            else{
+                $fails++;
+            }
+
+            //Log::info('PUNTOS: ');
+            //Log::info($points);
+            //Log::info('FALLOS: ');
+            //Log::info($fails);
+            //Log::info('-----------');
+        }
+
+        /*
         foreach($request->request as $value){
             $aux = 0;
             $i = 0;
@@ -54,7 +90,8 @@ class AlimentationController extends Controller
             else if($aux > 2){
                 $fails++;
             }
-        }         
+        }      
+        */   
 
         Alimentation::create([
             'user_id' => Auth::user()->id, //pilla el usuario de la sesión

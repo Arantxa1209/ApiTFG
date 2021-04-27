@@ -94,5 +94,9 @@ Route::post('addAnswersAlimentationTable', [App\Http\Controllers\Api\Alimentatio
 Route::post('addAnswersCleanningTable', [App\Http\Controllers\Api\CleanningController::class, 'addAnswersCleanningTable'])->middleware('auth:api');
 
 
-//Cleaninng Table
+//Aseo Table
 Route::post('addAnswersAseoTable', [App\Http\Controllers\Api\AseoController::class, 'addAnswersAseoTable'])->middleware('auth:api');
+
+
+//Memory Table
+Route::post('addAnswersMemoryTable', [App\Http\Controllers\Api\MemoryController::class, 'addAnswersMemoryTable'])->middleware('auth:api');
