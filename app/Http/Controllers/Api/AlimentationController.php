@@ -24,15 +24,14 @@ class AlimentationController extends Controller
             'word_3' => 'string|nullable'
         ]);
 
-        $fails = 0;
-        $points = 0;        
+        $points = 0;      
+        $total = 3;  
         $words = array('FIDEOS', 'AZUCAR', 'LEVADURA');
         $distances = array("2", "2", "2");
-        
 
         foreach($request->request as $value){
             $aux = 0;
-            for($i = 0; $i < 9; $i++){
+            for($i = 0; $i < 3; $i++){
                 $value = strtoupper($value);
                 similar_text($value, $words[$i], $percent);
                 if($i == 0){
@@ -52,9 +51,6 @@ class AlimentationController extends Controller
 
             if($aux >= 75.0){
                 $points++;
-            }
-            else{
-                $fails++;
             }
 
             //Log::info('PUNTOS: ');
@@ -98,7 +94,7 @@ class AlimentationController extends Controller
             'word_1' => $request->word_1,
             'word_2' => $request->word_2,
             'word_3' => $request->word_3,
-            'fails' => $fails,
+            'fails' => ($total - $points),
             'points' => $points
         ]);
 

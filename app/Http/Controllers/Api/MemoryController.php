@@ -30,8 +30,8 @@ class MemoryController extends Controller
             'word_9' => 'string|nullable'
         ]);
 
-        $fails = 0;
-        $points = 0;        
+        $points = 0;    
+        $total = 9;    
         $words = array('LAVAVAJILLAS', 'SERVILLETAS', 'ACONDICIONADOR', 'DETERGENTE', 'ESPONJA', 'GASAS', 'FIDEOS', 'AZUCAR', 'LEVADURA');
         $distances = array(4, 4, 4, 3, 2, 2, 2, 2, 2);
         
@@ -59,9 +59,6 @@ class MemoryController extends Controller
             if($aux >= 75.0){
                 $points++;
             }
-            else{
-                $fails++;
-            }
 
             //Log::info('PUNTOS: ');
             //Log::info($points);
@@ -69,6 +66,8 @@ class MemoryController extends Controller
             //Log::info($fails);
             //Log::info('-----------');
         }
+
+
         /*
         foreach($request->request as $value){
             $aux = 0;
@@ -133,7 +132,7 @@ class MemoryController extends Controller
             'word_7' => $request->word_7,
             'word_8' => $request->word_8,
             'word_9' => $request->word_9,
-            'fails' => $fails,
+            'fails' => ($total - $points),
             'points' => $points
         ]);
 
