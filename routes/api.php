@@ -100,3 +100,6 @@ Route::post('addAnswersAseoTable', [App\Http\Controllers\Api\AseoController::cla
 
 //Memory Table
 Route::post('addAnswersMemoryTable', [App\Http\Controllers\Api\MemoryController::class, 'addAnswersMemoryTable'])->middleware('auth:api');
+
+//Fluent Table
+Route::post('addAnswersFluentTable', [App\Http\Controllers\Api\FluentController::class, 'addAnswersFluentTable'])->middleware('auth:api');
