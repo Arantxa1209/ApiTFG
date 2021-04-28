@@ -11,6 +11,7 @@ use App\Notifications\PasswordResetRequest;
 use Illuminate\Support\Str;
 
 use App\Notifications\PasswordResetSuccess;
+use Illuminate\Support\Facades\Log;
 
 class PasswordResetController extends Controller
 {
@@ -46,7 +47,8 @@ class PasswordResetController extends Controller
             );
         }
         return response()->json([
-            'message' => 'Hemos enviado por correo electrónico el enlace para restablecer su contraseña.'
+            'message' => 'Hemos enviado por correo electrónico el enlace para restablecer su contraseña.',
+            'data' => $passwordReset
         ], 201);
     }
     /**
@@ -83,7 +85,8 @@ class PasswordResetController extends Controller
      * @return [json] user object
      */
     public function reset(Request $request)
-    {
+    {   
+
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string|confirmed',
