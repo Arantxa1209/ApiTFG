@@ -47,7 +47,7 @@ class PasswordResetController extends Controller
             );
         }
         return response()->json([
-            'message' => 'Hemos enviado por correo electrónico el enlace para restablecer su contraseña.',
+            'message' => 'Se ha registrado tu solicitud de cambio de contraseña.',
             'data' => $passwordReset
         ], 201);
     }
