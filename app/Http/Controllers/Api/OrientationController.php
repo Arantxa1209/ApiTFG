@@ -22,11 +22,11 @@ class OrientationController extends Controller
     public function addAnswersOrientation(Request $request)
     {
         $request->validate([
-            'year' => 'required|integer',
+            'year' => 'required',
             'month' => 'required|string',
             'weekDay' => 'required|string',
-            'monthDay' => 'required|integer',
-            'user_years' => 'required|integer'
+            'monthDay' => 'required',
+            'user_years' => 'required'
         ]);
 
         Orientation::create([
